@@ -30,7 +30,10 @@ namespace Combinations
             foreach (var item in _listOfLists[currentCombinationIndex])
             {
                 currentCombination[currentCombinationIndex] = item;
-                noOfCombinations = nest2(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
+                if (currentCombinationIndex < currentCombination.Length-1)
+                {
+                    noOfCombinations = nest2(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
+                }
             }
 
             return noOfCombinations;
@@ -42,7 +45,10 @@ namespace Combinations
             foreach (var word2 in _listOfLists[currentCombinationIndex])
             {
                 currentCombination[currentCombinationIndex] = word2;
-                noOfCombinations = Nest(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
+                if (currentCombinationIndex < currentCombination.Length - 1)
+                {
+                    noOfCombinations = Nest(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
+                }
             }
 
             return noOfCombinations;
@@ -54,8 +60,15 @@ namespace Combinations
             foreach (var word3 in _listOfLists[currentCombinationIndex])
             {
                 currentCombination[currentCombinationIndex] = word3;
-                doWork(currentCombination);
-                noOfCombinations++;
+                if (currentCombinationIndex < currentCombination.Length - 1)
+                {
+
+                }
+                else
+                {
+                    doWork(currentCombination);
+                    noOfCombinations++;
+                }
             }
 
             return noOfCombinations;
