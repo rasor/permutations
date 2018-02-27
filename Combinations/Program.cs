@@ -11,7 +11,12 @@ namespace Combinations
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello Combinations!");
+            var client = new LoopExisting2dArrayClient();
+            client.LoopArray();
+
+            Console.WriteLine("Done Combinations!");
+            Console.ReadKey();
         }
     }
 }
