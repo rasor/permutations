@@ -13,10 +13,24 @@ namespace Combinations
             _listOfLists = listOfLists;
         }
 
-        internal bool ForEachExecute(Action<int[]> doWork)
+        internal int ForEachExecute(Action<int[]> doWork)
         {
-            doWork(_listOfLists[0]);
-            return true;
+            //Loop through combinations the wordlists in the _listOfLists
+            var noOfLists = _listOfLists.Length;
+            var noOfCombinations = 0;
+            foreach (var word1 in _listOfLists[0])
+            {
+                foreach (var word2 in _listOfLists[1])
+                {
+                    foreach (var word3 in _listOfLists[2])
+                    {
+                        var combination = new int[] { word1, word2, word3 };
+                        doWork(combination);
+                        noOfCombinations++;
+                    }
+                }
+            }
+            return noOfCombinations;
         }
     }
 }

@@ -14,8 +14,12 @@ namespace Combinations
         };
 
         public void LoopArray() {
+            var ExpectedCombinations = _listOfLists[0].Length * _listOfLists[1].Length * _listOfLists[2].Length;
+            Console.WriteLine("ExpectedCombinations: " + ExpectedCombinations);
+
             var looper = new LoopExisting2dArray(_listOfLists);
-            bool ok = looper.ForEachExecute(DoWork);
+            var noOfCombinations = looper.ForEachExecute(DoWork);
+            Console.WriteLine("Combinations: "+ noOfCombinations);
         }
 
         protected void DoWork(int[] combination) {
