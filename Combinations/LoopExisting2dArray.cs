@@ -18,18 +18,46 @@ namespace Combinations
             //Loop through combinations the wordlists in the _listOfLists
             var noOfLists = _listOfLists.Length;
             var noOfCombinations = 0;
-            foreach (var word1 in _listOfLists[0])
+            var currentCombinationIndex = -1;
+            var currentCombination = new int[noOfLists];
+            noOfCombinations = nest3(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
+            return noOfCombinations;
+        }
+
+        private int nest3(int[] currentCombination, int currentCombinationIndex, Action<int[]> doWork, int noOfCombinations)
+        {
+            currentCombinationIndex++;
+            foreach (var item in _listOfLists[currentCombinationIndex])
             {
-                foreach (var word2 in _listOfLists[1])
-                {
-                    foreach (var word3 in _listOfLists[2])
-                    {
-                        var combination = new int[] { word1, word2, word3 };
-                        doWork(combination);
-                        noOfCombinations++;
-                    }
-                }
+                currentCombination[currentCombinationIndex] = item;
+                noOfCombinations = nest2(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
             }
+
+            return noOfCombinations;
+        }
+
+        private int nest2(int[] currentCombination, int currentCombinationIndex, Action<int[]> doWork, int noOfCombinations)
+        {
+            currentCombinationIndex++;
+            foreach (var word2 in _listOfLists[currentCombinationIndex])
+            {
+                currentCombination[currentCombinationIndex] = word2;
+                noOfCombinations = Nest(currentCombination, currentCombinationIndex, doWork, noOfCombinations);
+            }
+
+            return noOfCombinations;
+        }
+
+        private int Nest(int[] currentCombination, int currentCombinationIndex, Action<int[]> doWork, int noOfCombinations)
+        {
+            currentCombinationIndex++;
+            foreach (var word3 in _listOfLists[currentCombinationIndex])
+            {
+                currentCombination[currentCombinationIndex] = word3;
+                doWork(currentCombination);
+                noOfCombinations++;
+            }
+
             return noOfCombinations;
         }
     }
